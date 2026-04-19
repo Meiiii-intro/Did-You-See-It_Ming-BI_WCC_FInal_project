@@ -1,0 +1,86 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: black;
+  font-family: Arial, sans-serif;
+}
+
+canvas {
+  display: block;
+}
+
+.mobile-body {
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  overflow: hidden;
+  position: relative;
+}
+
+#mobile-feed {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  display: block;
+  background: black;
+}
+
+#mobile-status {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 10;
+  color: white;
+  font-size: 16px;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+
+#mobile-overlay {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  z-index: 10;
+  color: white;
+  font-size: 15px;
+  background: rgba(0, 0, 0, 0.28);
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+
+#qr-panel {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+  color: white;
+  background: rgba(0, 0, 0, 0.42);
+  padding: 14px;
+  border-radius: 14px;
+  backdrop-filter: blur(6px);
+  width: 170px;
+}
+
+#qr-title {
+  font-size: 14px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+#qr-code {
+  width: 140px;
+  height: 140px;
+  background: white;
+  padding: 6px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+#qr-link {
+  font-size: 11px;
+  line-height: 1.4;
+  word-break: break-all;
+  opacity: 0.9;
+}

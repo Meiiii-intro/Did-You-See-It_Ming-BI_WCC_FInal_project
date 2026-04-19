@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Clear Viewer</title>
+  <link rel="stylesheet" href="style.css?v=2001" />
+</head>
+<body class="mobile-body">
+  <div id="mobile-status">Waiting for desktop feed...</div>
+  <img id="mobile-feed" alt="Live clear feed" />
+
+  <div id="mobile-overlay">
+    <div>Scanned clear viewer</div>
+    <div id="mobile-clarity">Clarity: 0.00</div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="mobile.js?v=2001"></script>
+</body>
+</html>
