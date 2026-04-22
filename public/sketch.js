@@ -95,6 +95,13 @@ function setup() {
   createQRCodePanel();
 }
 
+
+ //--- MEDIA PIPE FACE LANDMARKER INITIALIZATION ---
+// This function initializes the Google MediaPipe Face Landmarker task.
+// I am utilizing the 'float16' model for a balance between tracking precision and 
+// real-time performance, ensuring a high frame rate (required for WCC standards).
+// The 'GPU' delegate is chosen to offload processing, preventing visual stutter.
+
 async function setupFaceLandmarker() {
   while (!window.mediapipeReady) {
     await new Promise((resolve) => setTimeout(resolve, 50));
@@ -161,6 +168,10 @@ function draw() {
   sendClearFeedToMobile();
 }
 
+// --- EYE OPENNESS DETECTION ---
+// This section extracts facial landmarks from the hidden tracking camera
+// and calculates an average eye-openness value from both eyes.
+// This numerical value is later used to determine whether a blink has occurred.
 function updateFaceTracking() {
   faceDetected = false;
   currentLandmarks = null;
@@ -212,6 +223,10 @@ function updateFaceTracking() {
   }
 }
 
+// --- EYE RATIO CALCULATION ---
+// This function measures the vertical distance between the eyelids
+// and compares it to the horizontal eye width.
+// The result is used as a simple eye-openness ratio.
 function getEyeOpenRatio(landmarks, upperIndex, lowerIndex, leftCornerIndex, rightCornerIndex) {
   const upper = landmarks[upperIndex];
   const lower = landmarks[lowerIndex];
@@ -226,6 +241,12 @@ function getEyeOpenRatio(landmarks, upperIndex, lowerIndex, leftCornerIndex, rig
   return verticalDist / horizontalDist;
 }
 
+// --- BLINK-FREQUENCY TRIGGER ---
+// Instead of reacting to a single blink, the system records blink events
+// within a limited time window. When three blinks are detected within
+// three seconds, a temporary clarity state is triggered.
+// This interaction was chosen because it feels closer to the bodily response
+// of trying to recover focus through repeated blinking.
 function updateBlinkTrigger() {
   smoothedEyeOpenValue = lerp(smoothedEyeOpenValue, eyeOpenValue, 0.28);
 
